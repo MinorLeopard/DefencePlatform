@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #05070A;
+  color: #E6E9EE;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: rgba(224, 122, 43, 0.35);
+  color: #fff;
+}
+
+/* Thin scrollbar */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1280px] px-5 md:px-8 lg:px-10;
+  }
+
+  .hairline {
+    @apply border-[1px] border-line;
+  }
+
+  .surface {
+    @apply bg-ink-900/70 border border-line rounded-xl;
+  }
+
+  .surface-hover {
+    @apply transition-colors hover:border-line-strong hover:bg-ink-850/80;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[11px] font-medium text-white/70;
+  }
+
+  .chip-accent {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-accent/25 bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent;
+  }
+
+  .kbd {
+    @apply rounded border border-line bg-ink-850 px-1.5 py-0.5 text-[10px] font-mono text-white/60;
+  }
+
+  .mono {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-white/50;
+  }
+
+  .section-label {
+    @apply mono text-accent;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-white text-ink-950 hover:bg-accent hover:text-white px-4 py-2.5 text-sm;
+  }
+
+  .btn-ghost {
+    @apply btn border border-line text-white/80 hover:border-line-strong hover:bg-white/5 px-4 py-2.5 text-sm;
+  }
+
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent-glow shadow-glow px-4 py-2.5 text-sm;
+  }
+
+  .bg-noise {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .gradient-orange {
+    background: radial-gradient(circle at 30% 30%, rgba(224, 122, 43, 0.35), transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(94, 184, 196, 0.15), transparent 55%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Subtle marquee */
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 40s linear infinite;
+}
+
+/* Radial grid hero */
+.hero-grid {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(224, 122, 43, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(94, 184, 196, 0.08), transparent 60%);
+}

@@ -1,0 +1,411 @@
+import type { Domain } from "./domains";
+
+export type TRL = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type Difficulty = "Explorer" | "Builder" | "Flagship" | "Moonshot";
+export type Status = "Open" | "Scouting" | "In Review" | "Awarded" | "Prototyping" | "Closed";
+
+export type Problem = {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  description: string;
+  domain: Domain;
+  tags: string[];
+  trl: { from: TRL; to: TRL };
+  difficulty: Difficulty;
+  status: Status;
+  bounty: number; // INR
+  currency: "INR";
+  sponsor: string;
+  sponsorType: "DPSU" | "Service HQ" | "Ministry" | "Lab" | "Industry" | "Foundation";
+  timeline: string;
+  deadline: string; // ISO
+  applicants: number;
+  teams: number;
+  region: string;
+  postedDaysAgo: number;
+  posterName: string;
+};
+
+export const problems: Problem[] = [
+  {
+    id: "PRB-0412",
+    slug: "swarm-counter-uas-hard-kill",
+    title: "Low-cost hard-kill interceptor for swarm UAS threats",
+    summary:
+      "Develop an attritable, sub-₹4L per-unit interceptor capable of neutralising swarms of 10+ Class-I UAS at ranges up to 2 km, with autonomous target assignment.",
+    description:
+      "Proposals should address launcher footprint (vehicle-mounted), terminal guidance under EW-contested conditions, time-to-target under 4s, and compatibility with existing AD radar feeds. Soft-kill combinations are welcome as secondary mitigation but the primary evaluation criterion is kinetic neutralisation probability.",
+    domain: "UAS / Drones",
+    tags: ["Counter-UAS", "Swarm", "Kinetic", "EW-hardened"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Flagship",
+    status: "Open",
+    bounty: 48000000,
+    currency: "INR",
+    sponsor: "Army Design Bureau",
+    sponsorType: "Service HQ",
+    timeline: "14 months · 3 gated milestones",
+    deadline: "2026-06-15",
+    applicants: 54,
+    teams: 12,
+    region: "Pan-India",
+    postedDaysAgo: 9,
+    posterName: "Lt. Col. A. Ranade (retd.)",
+  },
+  {
+    id: "PRB-0411",
+    slug: "ai-assisted-sonar-classification",
+    title: "AI-assisted passive sonar classification for littoral operations",
+    summary:
+      "On-device classifier capable of distinguishing 30+ maritime signatures in shallow, acoustically cluttered waters with <3% false-alarm rate.",
+    description:
+      "Must run on a power-constrained submersible edge module (≤ 18W), support online re-training from operator-labelled events, and export confidence bands for command decisions. Datasets will be provided under MoU.",
+    domain: "Maritime",
+    tags: ["Sonar", "Edge AI", "Littoral"],
+    trl: { from: 3, to: 6 },
+    difficulty: "Builder",
+    status: "Open",
+    bounty: 22500000,
+    currency: "INR",
+    sponsor: "NSTL Vizag",
+    sponsorType: "Lab",
+    timeline: "9 months",
+    deadline: "2026-05-30",
+    applicants: 31,
+    teams: 8,
+    region: "Coastal — Vizag cluster",
+    postedDaysAgo: 14,
+    posterName: "Dr. S. Venkatesh",
+  },
+  {
+    id: "PRB-0410",
+    slug: "himalayan-soldier-energy-pack",
+    title: "High-altitude soldier energy pack — 72 hour autonomy",
+    summary:
+      "Wearable hybrid energy system enabling 72 hours of comms + optronics + heated clothing in sub-zero, low-oxygen conditions.",
+    description:
+      "Target weight ≤ 3.2 kg. Must support cold-start at -30°C. Fuel-cell + Li-S or solid-state hybrid preferred. IP68, MIL-STD-810H compliance expected at prototype stage.",
+    domain: "Energy & Propulsion",
+    tags: ["Wearables", "High-altitude", "Fuel cell"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Flagship",
+    status: "Scouting",
+    bounty: 35000000,
+    currency: "INR",
+    sponsor: "Northern Command + DRDO DIPAS",
+    sponsorType: "Lab",
+    timeline: "18 months",
+    deadline: "2026-07-10",
+    applicants: 22,
+    teams: 6,
+    region: "Leh · Tawang field trials",
+    postedDaysAgo: 21,
+    posterName: "Wing Cdr. P. Dhar (advisor)",
+  },
+  {
+    id: "PRB-0409",
+    slug: "secure-mesh-comms-forward-posts",
+    title: "LPI/LPD mesh communications for forward posts",
+    summary:
+      "Multi-hop frequency-hopping mesh with low probability of intercept, sub-200 ms relay latency, and graceful degradation under jamming.",
+    description:
+      "Focus on software-defined radio approaches, NATO-interoperable waveforms, and post-quantum key exchange. Reference hardware stack will be shared post-NDA.",
+    domain: "Communications",
+    tags: ["SDR", "LPI/LPD", "Post-quantum"],
+    trl: { from: 5, to: 8 },
+    difficulty: "Flagship",
+    status: "In Review",
+    bounty: 62500000,
+    currency: "INR",
+    sponsor: "Signals Directorate",
+    sponsorType: "Service HQ",
+    timeline: "24 months · 5 milestones",
+    deadline: "Closed 2026-02-28",
+    applicants: 88,
+    teams: 19,
+    region: "Pan-India",
+    postedDaysAgo: 76,
+    posterName: "Col. R. Gill",
+  },
+  {
+    id: "PRB-0408",
+    slug: "indigenous-inertial-navigation-ring-laser",
+    title: "Indigenous tactical-grade ring laser gyroscope module",
+    summary:
+      "Domestic RLG INS unit with ≤ 0.5 °/hr bias stability for missile and aircraft use cases.",
+    description:
+      "Candidates will be expected to build an indigenous supply chain for optical cavities and read-out electronics. Grant covers first fabrication run.",
+    domain: "Sensors",
+    tags: ["INS", "RLG", "Import substitution"],
+    trl: { from: 3, to: 6 },
+    difficulty: "Moonshot",
+    status: "Open",
+    bounty: 85000000,
+    currency: "INR",
+    sponsor: "RCI Hyderabad",
+    sponsorType: "Lab",
+    timeline: "30 months",
+    deadline: "2026-09-01",
+    applicants: 11,
+    teams: 3,
+    region: "Hyderabad · Bengaluru",
+    postedDaysAgo: 4,
+    posterName: "Dr. K. Iyer",
+  },
+  {
+    id: "PRB-0407",
+    slug: "gan-ew-transceiver",
+    title: "GaN-based broadband EW transceiver front-end",
+    summary:
+      "2–18 GHz GaN transceiver front-end with ≥ 40 W peak, hot-swappable modules, production cost ≤ $5.5k/unit at scale.",
+    description:
+      "Prioritise indigenous GaN-on-SiC supply and thermal design for pod-mounted deployments. Target platform: airborne EW pod.",
+    domain: "Electronics & EW",
+    tags: ["GaN", "EW", "RF"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Flagship",
+    status: "Open",
+    bounty: 54000000,
+    currency: "INR",
+    sponsor: "Bharat Electronics + DRDO LRDE",
+    sponsorType: "DPSU",
+    timeline: "22 months",
+    deadline: "2026-08-12",
+    applicants: 19,
+    teams: 5,
+    region: "Bengaluru · Hyderabad",
+    postedDaysAgo: 32,
+    posterName: "Sh. V. Ramanathan",
+  },
+  {
+    id: "PRB-0406",
+    slug: "armoured-vehicle-active-protection",
+    title: "Active protection system for tracked vehicles — hard + soft kill",
+    summary:
+      "Vehicle-integrated APS covering 360° threat envelope for ATGMs, RPGs and top-attack munitions with ≤ 40 ms reaction time.",
+    description:
+      "Proposals should outline countermunition, radar/IR sensing fusion, and vehicle integration for T-90, Arjun Mk1A, and future platforms. Safety compliance for dismounted troops is mandatory.",
+    domain: "Land Systems",
+    tags: ["APS", "Armour", "Kinetic"],
+    trl: { from: 5, to: 8 },
+    difficulty: "Flagship",
+    status: "Prototyping",
+    bounty: 95000000,
+    currency: "INR",
+    sponsor: "CVRDE + Armoured Corps",
+    sponsorType: "Service HQ",
+    timeline: "26 months",
+    deadline: "Ongoing",
+    applicants: 46,
+    teams: 9,
+    region: "Chennai · Pune",
+    postedDaysAgo: 52,
+    posterName: "Brig. S. Malhotra",
+  },
+  {
+    id: "PRB-0405",
+    slug: "logistics-digital-twin-eastern-sector",
+    title: "Digital twin of eastern-sector logistics corridor",
+    summary:
+      "Operational digital twin covering road, rail, and air logistics with predictive bottleneck detection.",
+    description:
+      "Must ingest MoD logistics feeds, handle monsoon disruption modelling, and produce 72-hour forecasts. Commander-facing UI is in scope.",
+    domain: "Logistics",
+    tags: ["Digital twin", "Ops research"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Builder",
+    status: "Open",
+    bounty: 28000000,
+    currency: "INR",
+    sponsor: "Eastern Command",
+    sponsorType: "Service HQ",
+    timeline: "12 months",
+    deadline: "2026-05-22",
+    applicants: 27,
+    teams: 7,
+    region: "Kolkata · Guwahati",
+    postedDaysAgo: 17,
+    posterName: "Maj. Gen. T. Barua",
+  },
+  {
+    id: "PRB-0404",
+    slug: "small-satellite-sar-constellation",
+    title: "Sub-₹40Cr small-satellite SAR constellation reference design",
+    summary:
+      "Reference design for a 12-satellite X-band SAR constellation optimised for domestic launch cadence.",
+    description:
+      "Goal is a reproducible platform bus with 500 kg class, 1 m resolution, 36-hour revisit over Indian Ocean Region. ISRO supports as advisor.",
+    domain: "Space",
+    tags: ["SAR", "SmallSat", "IOR"],
+    trl: { from: 3, to: 6 },
+    difficulty: "Flagship",
+    status: "Open",
+    bounty: 75000000,
+    currency: "INR",
+    sponsor: "IN-SPACe partner mission",
+    sponsorType: "Ministry",
+    timeline: "36 months · 4 milestones",
+    deadline: "2026-10-01",
+    applicants: 15,
+    teams: 4,
+    region: "Bengaluru · Ahmedabad",
+    postedDaysAgo: 40,
+    posterName: "Dr. M. Subramaniam",
+  },
+  {
+    id: "PRB-0403",
+    slug: "autonomous-mine-countermeasures-usv",
+    title: "Autonomous USV for shallow-water mine countermeasures",
+    summary:
+      "Unmanned surface vessel with autonomous search, classify, neutralise workflow for littoral mine threats.",
+    description:
+      "Support for multi-USV teaming, RoE-compliant autonomy, and 12-hour endurance at sea-state 3.",
+    domain: "Maritime",
+    tags: ["USV", "MCM", "Autonomy"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Flagship",
+    status: "Scouting",
+    bounty: 58000000,
+    currency: "INR",
+    sponsor: "Indian Navy (WNC)",
+    sponsorType: "Service HQ",
+    timeline: "20 months",
+    deadline: "2026-07-18",
+    applicants: 26,
+    teams: 6,
+    region: "Mumbai · Kochi",
+    postedDaysAgo: 28,
+    posterName: "Cdr. V. Krishnan",
+  },
+  {
+    id: "PRB-0402",
+    slug: "tactical-medevac-vtol",
+    title: "Tactical medevac eVTOL for disputed terrain",
+    summary:
+      "Electric VTOL with 180 kg payload, 140 km range and low-acoustic signature for casualty evacuation.",
+    description:
+      "Safety redundancy, one-pilot or remote pilot modes, and pre-position kit standardisation are core evaluation areas.",
+    domain: "Aerospace",
+    tags: ["eVTOL", "Medevac", "Hybrid"],
+    trl: { from: 3, to: 6 },
+    difficulty: "Moonshot",
+    status: "Open",
+    bounty: 120000000,
+    currency: "INR",
+    sponsor: "Indian Air Force + AFMC",
+    sponsorType: "Service HQ",
+    timeline: "30 months",
+    deadline: "2026-11-30",
+    applicants: 9,
+    teams: 2,
+    region: "Bengaluru",
+    postedDaysAgo: 6,
+    posterName: "Air Cmde. L. Nair",
+  },
+  {
+    id: "PRB-0401",
+    slug: "indigenous-night-vision-tubes",
+    title: "Indigenous Gen-III image intensifier tubes for night optics",
+    summary:
+      "Domestic Gen-III tubes achieving ≥ 1800 μA/lm sensitivity, at scale of 5,000 units/year.",
+    description:
+      "Includes supply chain development for photocathodes and anode screens. Grant covers pilot production.",
+    domain: "Sensors",
+    tags: ["Night vision", "Import substitution"],
+    trl: { from: 4, to: 7 },
+    difficulty: "Flagship",
+    status: "Open",
+    bounty: 42000000,
+    currency: "INR",
+    sponsor: "Infantry Directorate",
+    sponsorType: "Service HQ",
+    timeline: "18 months",
+    deadline: "2026-06-28",
+    applicants: 17,
+    teams: 4,
+    region: "Dehradun · Pune",
+    postedDaysAgo: 35,
+    posterName: "Col. D. Menon",
+  },
+  {
+    id: "PRB-0400",
+    slug: "forward-base-microgrid",
+    title: "Rapidly deployable microgrid for forward operating bases",
+    summary:
+      "Containerised microgrid: solar + storage + hydrogen backup, ≤ 72-hr deployment by 4-soldier team.",
+    description:
+      "Weather-rugged across deserts (Rajasthan) and cold deserts (Ladakh). Remote telemetry + cyber hardening required.",
+    domain: "Energy & Propulsion",
+    tags: ["Microgrid", "Solar", "Hydrogen"],
+    trl: { from: 5, to: 8 },
+    difficulty: "Builder",
+    status: "Open",
+    bounty: 24000000,
+    currency: "INR",
+    sponsor: "MES + Corps of Engineers",
+    sponsorType: "Service HQ",
+    timeline: "14 months",
+    deadline: "2026-05-12",
+    applicants: 34,
+    teams: 9,
+    region: "Rajasthan · Ladakh trials",
+    postedDaysAgo: 10,
+    posterName: "Maj. A. Sood",
+  },
+  {
+    id: "PRB-0399",
+    slug: "autonomous-convoy-escort",
+    title: "Autonomous armoured convoy-escort ground vehicle",
+    summary:
+      "UGV in the 3-ton class, autonomous convoy escort with threat-detection and suppression capabilities.",
+    description:
+      "Weapon station integration is out of scope for Phase-1. Mobility and ISR focus. Weapon integration handled by DPSU partner downstream.",
+    domain: "Robotics",
+    tags: ["UGV", "Autonomy", "ISR"],
+    trl: { from: 3, to: 6 },
+    difficulty: "Flagship",
+    status: "Scouting",
+    bounty: 66000000,
+    currency: "INR",
+    sponsor: "Mechanised Forces Directorate",
+    sponsorType: "Service HQ",
+    timeline: "24 months",
+    deadline: "2026-08-05",
+    applicants: 12,
+    teams: 3,
+    region: "Pune · Ahmednagar",
+    postedDaysAgo: 19,
+    posterName: "Lt. Col. R. Basu",
+  },
+  {
+    id: "PRB-0398",
+    slug: "simulation-vr-infantry-training",
+    title: "Immersive VR simulator for infantry section-level drills",
+    summary:
+      "Full-body tracked VR for 12-soldier section drills with live-instructor override and after-action review.",
+    description:
+      "Focus on low-motion sickness, indigenous haptic weapons replicas, and cross-service content packs.",
+    domain: "Simulation & Training",
+    tags: ["VR", "Training", "Haptics"],
+    trl: { from: 5, to: 8 },
+    difficulty: "Builder",
+    status: "Awarded",
+    bounty: 18500000,
+    currency: "INR",
+    sponsor: "ARTRAC",
+    sponsorType: "Service HQ",
+    timeline: "10 months",
+    deadline: "Awarded 2026-01-20",
+    applicants: 58,
+    teams: 11,
+    region: "Shimla · Mhow",
+    postedDaysAgo: 92,
+    posterName: "Brig. J. Tiwari",
+  },
+];
+
+export function getProblem(slug: string) {
+  return problems.find((p) => p.slug === slug);
+}
