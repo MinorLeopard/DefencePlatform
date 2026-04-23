@@ -15,14 +15,17 @@ import {
   Search,
   ChevronDown,
   LogOut,
+  Beaker,
 } from "lucide-react";
 import { Avatar } from "@/components/ui/Avatar";
+import { currentMember } from "@/data/members";
 import { cn } from "@/lib/cn";
 
 const nav = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/workspace", label: "My workspace", icon: Compass },
   { href: "/dashboard/projects", label: "Projects", icon: GitBranch },
+  { href: "/labs", label: "AI Labs", icon: Beaker },
   { href: "/assistant", label: "AI assistant", icon: Sparkles, highlight: true },
   { href: "/community/private", label: "Private rooms", icon: MessageSquare },
   { href: "/dashboard/network", label: "Network", icon: Users },
@@ -37,14 +40,17 @@ export function MemberShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-[calc(100vh-4rem)]">
       <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-60 flex-shrink-0 border-r border-line bg-ink-950/80 md:flex md:flex-col">
         <div className="px-5 pt-6 pb-4">
-          <div className="flex items-center gap-3 rounded-md border border-line bg-ink-900 p-2.5">
-            <Avatar name="Aarav Pillai" size={28} />
+          <Link
+            href={`/members/${currentMember.slug}`}
+            className="flex items-center gap-3 rounded-md border border-line bg-ink-900 p-2.5 transition-colors hover:border-line-strong"
+          >
+            <Avatar name={currentMember.name} size={28} />
             <div className="min-w-0 flex-1">
-              <div className="truncate text-[12.5px] font-medium text-white">Aarav Pillai</div>
-              <div className="truncate text-[10.5px] text-white/50">Skyops Defence · Founder</div>
+              <div className="truncate text-[12.5px] font-medium text-white">{currentMember.name}</div>
+              <div className="truncate text-[10.5px] text-white/50">{currentMember.org} · {currentMember.tier}</div>
             </div>
             <ChevronDown className="h-3.5 w-3.5 text-white/40" />
-          </div>
+          </Link>
         </div>
 
         <nav className="flex flex-col gap-1 px-3">

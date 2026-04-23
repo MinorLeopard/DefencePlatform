@@ -37,6 +37,47 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "PRJ-013",
+    slug: "project-nayan",
+    name: "project-nayan",
+    tagline:
+      "High-level reference architecture and 6-DOF simulation stack for a precision guidance retrofit concept.",
+    description:
+      "Project Nayan is a simulation-first reference architecture for a precision guidance retrofit package targeted at legacy strike systems. The project is explicitly non-operational: it is a systems-engineering, modelling, and integration-study workstream intended for peer review, academic collaboration, and subsystem research. Scope includes a 6-DOF simulation harness, a seeker-in-the-loop HIL scaffolding, avionics retrofit studies, and a modular sensor-fusion architecture. Build instructions, propellant, or lethality specifics are out of scope and not published.",
+    domain: "AI & Autonomy",
+    tags: ["GNC", "Simulation", "Retrofit", "Systems architecture", "HIL", "6-DOF"],
+    stage: "Prototype",
+    license: "Restricted",
+    stars: 486,
+    forks: 22,
+    contributors: 14,
+    commits: 874,
+    openIssues: 12,
+    openPRs: 4,
+    lastCommitDaysAgo: 1,
+    lastReleaseDaysAgo: 11,
+    languages: [
+      { name: "C++", pct: 44, color: "#E07A2B" },
+      { name: "Python", pct: 28, color: "#5EB8C4" },
+      { name: "MATLAB", pct: 16, color: "#E4B458" },
+      { name: "Rust", pct: 12, color: "#7DD3A8" },
+    ],
+    maintainers: [
+      { name: "Vivek Oberoi", role: "Research lead · architecture", org: "Oberoi Systems Research" },
+      { name: "Dr. K. Iyer", role: "Advisor · sensors & navigation", org: "RCI" },
+      { name: "Pranav Sethi", role: "Guidance simulation WG", org: "Prahaar Tactical" },
+    ],
+    linkedProblems: ["PRB-0413", "PRB-0408"],
+    classification: "Restricted",
+    activity: [
+      { t: "2h ago", actor: "vivek", kind: "commit", message: "sim6dof: decouple airframe model from guidance law for comparative studies" },
+      { t: "9h ago", actor: "vivek", kind: "review", message: "approved #104 — sensor-fusion scaffold with ESKF baseline" },
+      { t: "1d ago", actor: "kiyer", kind: "issue", message: "#117: document assumption envelope for HIL scaffolding" },
+      { t: "3d ago", actor: "ci-bot", kind: "release", message: "v0.4.0 — architecture memo + simulation harness (restricted access)" },
+      { t: "6d ago", actor: "vivek", kind: "milestone", message: "Milestone M2 · architecture peer-review cycle opened to GNC Lab members" },
+    ],
+  },
+  {
     id: "PRJ-001",
     slug: "garuda-swarm-stack",
     name: "garuda-swarm-stack",
@@ -180,6 +221,7 @@ export const projects: Project[] = [
     maintainers: [
       { name: "Shreya Kulkarni", role: "Tech lead", org: "Ashwin Radios" },
       { name: "Vivaan Chhabra", role: "Crypto WG", org: "IIT Kanpur" },
+      { name: "Vivek Oberoi", role: "Contributor · embedded timing", org: "Oberoi Systems Research" },
     ],
     linkedProblems: ["PRB-0409"],
     linkedStartup: "Ashwin Radios",

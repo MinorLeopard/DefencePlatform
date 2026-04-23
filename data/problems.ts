@@ -30,6 +30,31 @@ export type Problem = {
 
 export const problems: Problem[] = [
   {
+    id: "PRB-0413",
+    slug: "guidance-modernisation-legacy-systems",
+    title: "Guidance modernisation concept study for legacy strike systems",
+    summary:
+      "High-level architecture and simulation-first concept study for a precision guidance retrofit package — scoped to systems engineering, modelling, and integration studies only.",
+    description:
+      "This is a concept-study problem, not a build programme. Submissions are evaluated on quality of systems architecture, 6-DOF simulation, sensor-fusion reasoning, avionics retrofit trade studies, and academic peer-review posture. Explicit exclusions: propellant chemistry, lethality modelling, actuation design for warheads, or any procedural build guide. Awarded teams will be paired with a defence-research lab advisor and the BDN Guidance, Navigation & Control Lab for peer review.",
+    domain: "AI & Autonomy",
+    tags: ["GNC", "Retrofit concept", "Simulation", "Systems architecture"],
+    trl: { from: 2, to: 4 },
+    difficulty: "Flagship",
+    status: "Open",
+    bounty: 28000000,
+    currency: "INR",
+    sponsor: "BDN GNC Lab + partner defence research advisory",
+    sponsorType: "Foundation",
+    timeline: "12 months · 3 peer-review gates",
+    deadline: "2026-08-30",
+    applicants: 14,
+    teams: 4,
+    region: "Hyderabad · Bengaluru · Pune",
+    postedDaysAgo: 11,
+    posterName: "Dr. K. Iyer (chair, GNC Lab)",
+  },
+  {
     id: "PRB-0412",
     slug: "swarm-counter-uas-hard-kill",
     title: "Low-cost hard-kill interceptor for swarm UAS threats",

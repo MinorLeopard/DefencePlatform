@@ -23,10 +23,85 @@ export type Thread = {
   pinned?: boolean;
   solved?: boolean;
   memberOnly?: boolean;
+  bookmarked?: boolean;
+  kind?: "question" | "looking-for" | "announcement" | "discussion";
   sampleReplies: Reply[];
 };
 
 export const threads: Thread[] = [
+  {
+    id: "TH-423",
+    slug: "materials-for-harsh-thermal-envelopes",
+    title: "Materials survey — ruggedised composites for harsh thermal envelopes?",
+    body:
+      "Putting a materials shortlist together for a ruggedised embedded enclosure that needs to survive a wide thermal operating envelope. Looking for community input on high-temperature polymer composites, ceramic matrix options, and realistic supplier-side lead times in India. High-level survey only — no formulation specifics needed.",
+    author: "Neha Gokhale",
+    authorRole: "CTO, HimShakti",
+    authorOrg: "HimShakti Energy",
+    category: "Hardware",
+    tags: ["Materials", "Thermal", "Composites"],
+    replies: 23,
+    upvotes: 164,
+    views: 2_420,
+    when: "18h ago",
+    kind: "question",
+    sampleReplies: [
+      {
+        author: "Vivek Oberoi",
+        role: "Precision Guidance Research Lead · Oberoi Systems Research",
+        content:
+          "For a first-pass shortlist, I'd look at three categories before going deeper. (1) Polyimide-family composites (glass- or carbon-reinforced) for the middle of the envelope — mature supply chain domestically, predictable creep. (2) Oxide-ceramic matrix composites when you need the upper end of the envelope; IIT Madras and ARCI have done credible work, and HAL has references for fixture integration. (3) Phenolic/ablatives only at the extreme end — and only if you're pairing them with a clear thermal-management architecture. A practical tip: build a very small HIL thermal rig at IISc's MRC or the BDN Defence Simulation Lab before you commit to a supplier — the thermal cycling test results tend to separate the shortlist faster than a spec sheet will. Happy to share our GNC-side enclosure survey under a BDN member NDA if it helps.",
+        when: "11h ago",
+        upvotes: 92,
+      },
+      {
+        author: "Dr. K. Iyer",
+        role: "RCI Hyderabad",
+        content:
+          "Seconding Vivek's point on HIL thermal cycling. If you need access to environmental chambers, the BDN Defence Simulation Lab has two open slots per quarter for member teams.",
+        when: "7h ago",
+        upvotes: 41,
+      },
+    ],
+  },
+  {
+    id: "TH-422",
+    slug: "looking-for-6dof-simulation-collaborators",
+    title: "Looking for: 6-DOF simulation collaborators for a retrofit guidance architecture study",
+    body:
+      "Opening up a collaboration slot on Project Nayan — the precision guidance retrofit architecture study. I'm specifically looking for: (a) campus GNC groups willing to run a 6-DOF simulation sweep against the v0.4 architecture memo, (b) a sensor-fusion engineer with an ESKF/UKF background who can peer-review the fusion scaffolding, and (c) a materials researcher interested in the enclosure thermal envelope. This is a simulation and architecture collaboration — strictly no build-guide work. BDN GNC Lab members can DM directly; others can reply here and I'll route via the BDN collaboration desk.",
+    author: "Vivek Oberoi",
+    authorRole: "Precision Guidance Research Lead · Oberoi Systems Research",
+    authorOrg: "Oberoi Systems Research",
+    category: "Research",
+    tags: ["GNC", "Simulation", "Collaboration", "Project Nayan"],
+    replies: 17,
+    upvotes: 128,
+    views: 1_810,
+    when: "1d ago",
+    pinned: true,
+    bookmarked: true,
+    memberOnly: true,
+    kind: "looking-for",
+    sampleReplies: [
+      {
+        author: "Dr. K. Iyer",
+        role: "RCI Hyderabad",
+        content:
+          "Happy to review the sensor-fusion scaffolding. I'll ping you via the GNC Lab channel with a review window.",
+        when: "22h ago",
+        upvotes: 36,
+      },
+      {
+        author: "Pranav Sethi",
+        role: "CEO, Prahaar Tactical",
+        content:
+          "Our team can run a 6-DOF sweep on a scoped parameter window. Will keep the scope strictly to architecture comparison, not trajectory optimisation.",
+        when: "14h ago",
+        upvotes: 24,
+      },
+    ],
+  },
   {
     id: "TH-421",
     slug: "swarm-deconfliction-under-ew",

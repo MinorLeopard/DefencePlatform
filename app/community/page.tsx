@@ -97,13 +97,15 @@ export default function CommunityPage() {
               <div className="mono mb-4">Featured members</div>
               <ul className="space-y-4">
                 {featuredMembers.slice(0, 6).map((m) => (
-                  <li key={m.id} className="flex items-center gap-3">
-                    <Avatar name={m.name} size={34} />
-                    <div className="flex-1">
-                      <div className="text-[13px] text-white">{m.name}</div>
-                      <div className="text-[11px] text-white/45">{m.role} · {m.org}</div>
-                    </div>
-                    <span className="chip">{m.contributions}</span>
+                  <li key={m.id}>
+                    <Link href={`/members/${m.slug}`} className="flex items-center gap-3 rounded-md p-1 -m-1 transition-colors hover:bg-white/5">
+                      <Avatar name={m.name} size={34} />
+                      <div className="flex-1 min-w-0">
+                        <div className="text-[13px] text-white truncate">{m.name}</div>
+                        <div className="text-[11px] text-white/45 truncate">{m.role} · {m.org}</div>
+                      </div>
+                      <span className="chip">{m.contributions}</span>
+                    </Link>
                   </li>
                 ))}
               </ul>

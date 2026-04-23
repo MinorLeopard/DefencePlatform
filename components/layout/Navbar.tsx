@@ -10,6 +10,7 @@ import { cn } from "@/lib/cn";
 const navItems = [
   { href: "/problems", label: "Problems" },
   { href: "/projects", label: "Projects" },
+  { href: "/labs", label: "AI Labs" },
   { href: "/creators", label: "Creators" },
   { href: "/startups", label: "Startups" },
   { href: "/summit", label: "Summit" },
