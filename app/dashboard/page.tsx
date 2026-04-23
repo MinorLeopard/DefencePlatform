@@ -22,6 +22,7 @@ import { threads } from "@/data/community";
 import { grants } from "@/data/grants";
 import { labs } from "@/data/labs";
 import { currentMember } from "@/data/members";
+import { vivekWorkspace } from "@/data/workspace";
 import { formatINR } from "@/lib/format";
 
 export default function DashboardPage() {
@@ -71,9 +72,22 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <KPI label="Nayan review progress" value="62%" sub="3 of 5 reviewers" tone="accent" />
-        <KPI label="Active projects" value="2" sub="1 flagship · 1 contributor" />
+        <KPI label="Open action items" value={String(vivekWorkspace.actionItems.length)} sub="2 P0 · 2 P1 · 2 P2" />
         <KPI label="Forum answers (YTD)" value="42" sub="+6 this month" tone="green" />
         <KPI label="GNC Lab studies" value="2" sub="1 peer review · 1 active" tone="cyan" />
+      </div>
+
+      <div className="mt-4 flex items-center justify-between rounded-xl border border-accent/25 bg-accent/5 px-5 py-3.5">
+        <div className="flex items-center gap-3">
+          <Sparkles className="h-4 w-4 text-accent" />
+          <div>
+            <div className="text-[13px] text-white">Your Bharat Incubate Cohort B application is 68% complete</div>
+            <div className="text-[11.5px] text-white/55">University Spinout track · applications close Jul 15</div>
+          </div>
+        </div>
+        <Link href="/startups/incubation/apply?track=university-spinout" className="btn-accent !py-1.5 !px-3 !text-[11.5px]">
+          Resume draft
+        </Link>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
@@ -252,6 +266,63 @@ export default function DashboardPage() {
           </ul>
           <Link href="/startups#grants" className="mt-4 inline-flex items-center gap-1 text-[11.5px] text-accent">
             Explore capital stack <ArrowUpRight className="h-3 w-3" />
+          </Link>
+        </section>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <section className="lg:col-span-2 rounded-xl border border-line bg-ink-900/50">
+          <div className="flex items-center justify-between border-b border-line p-5">
+            <div className="flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-accent" />
+              <div className="font-display text-[15px] text-white">Notifications</div>
+              <span className="rounded-full bg-accent/15 px-2 py-0.5 text-[9.5px] uppercase text-accent">
+                {vivekWorkspace.notifications.filter((n) => n.unread).length} new
+              </span>
+            </div>
+            <Link href="/dashboard/workspace" className="text-[11.5px] text-white/55 hover:text-white">Open workspace →</Link>
+          </div>
+          <ul className="divide-y divide-line">
+            {vivekWorkspace.notifications.slice(0, 5).map((n) => (
+              <li key={n.id}>
+                <Link href={n.href} className="flex items-start gap-3 p-4 transition-colors hover:bg-ink-850/50">
+                  <Avatar name={n.actor} size={26} />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 text-[11px]">
+                      <span className={n.unread ? "text-white" : "text-white/55"}>{n.actor}</span>
+                      <span className="text-white/35">· {n.when}</span>
+                      {n.unread && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent" />}
+                    </div>
+                    <div className={`mt-1 text-[12.5px] line-clamp-2 ${n.unread ? "text-white" : "text-white/55"}`}>
+                      {n.message}
+                    </div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="rounded-xl border border-line bg-ink-900/50 p-5">
+          <div className="flex items-center gap-2 mb-4">
+            <Target className="h-4 w-4 text-accent" />
+            <div className="font-display text-[15px] text-white">Top action items</div>
+          </div>
+          <ul className="space-y-3">
+            {vivekWorkspace.actionItems.slice(0, 4).map((a) => (
+              <li key={a.id} className="rounded-md border border-line bg-ink-850/40 p-3">
+                <div className="flex items-center gap-2">
+                  <Badge tone={a.priority === "P0" ? "accent" : a.priority === "P1" ? "amber" : "neutral"} dot>
+                    {a.priority}
+                  </Badge>
+                  <span className="mono text-[9.5px]">{a.due}</span>
+                </div>
+                <div className="mt-2 text-[12.5px] text-white line-clamp-2">{a.title}</div>
+              </li>
+            ))}
+          </ul>
+          <Link href="/dashboard/workspace" className="mt-4 inline-flex items-center gap-1 text-[11.5px] text-accent">
+            Open workspace <ArrowUpRight className="h-3 w-3" />
           </Link>
         </section>
       </div>

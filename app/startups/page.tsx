@@ -2,9 +2,11 @@ import Link from "next/link";
 import { PageHero } from "@/components/page/PageHero";
 import { StartupCard } from "@/components/cards/StartupCard";
 import { Section } from "@/components/ui/Section";
+import { Badge } from "@/components/ui/Badge";
 import { startups } from "@/data/startups";
 import { grants, patentStages } from "@/data/grants";
-import { FileText, Award, Landmark, Banknote, ArrowUpRight } from "lucide-react";
+import { tracks, currentCohort, pastCohorts } from "@/data/incubation";
+import { FileText, Award, Landmark, Banknote, ArrowUpRight, Rocket, Calendar, Trophy, Beaker } from "lucide-react";
 
 export const metadata = {
   title: "Startups, grants & patents",
@@ -34,6 +36,55 @@ export default function StartupsPage() {
           { label: "Investor council", value: 34 },
         ]}
       />
+
+      <Section
+        id="incubation"
+        label="Bharat Incubate · semi-annual cohort"
+        title={<>A disciplined incubation layer for defence builders.</>}
+        intro="Four tracks. 12–16 weeks. Non-dilutive stipend, all six AI Labs, compliance and IP desks, and a capstone demo at Summit. Designed so founders ship to field readiness without losing momentum."
+        cta={
+          <div className="flex flex-wrap gap-2">
+            <Link href="/startups/incubation" className="btn-ghost">Program details <ArrowUpRight className="h-3.5 w-3.5" /></Link>
+            <Link href="/startups/incubation/apply" className="btn-accent">Apply now</Link>
+          </div>
+        }
+      >
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {tracks.map((t) => (
+            <Link
+              key={t.id}
+              href={`/startups/incubation/apply?track=${t.slug}`}
+              className="group flex flex-col gap-3 rounded-xl border border-line bg-ink-900/50 p-5 transition-colors hover:border-line-strong hover:bg-ink-850/70"
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className="h-8 w-8 rounded-md border"
+                  style={{
+                    background: `linear-gradient(135deg, ${t.color}40, ${t.color}10)`,
+                    borderColor: `${t.color}40`,
+                  }}
+                />
+                <Badge tone="neutral">{t.weeks}w</Badge>
+              </div>
+              <div>
+                <div className="font-display text-[14.5px] text-white">{t.name}</div>
+                <p className="mt-1.5 line-clamp-2 text-[12px] text-white/55">{t.audience}</p>
+              </div>
+              <div className="mt-auto flex items-center justify-between text-[11px] text-white/50 group-hover:text-accent transition-colors">
+                <span>{t.stipend.split("+")[0].trim()}</span>
+                <span className="inline-flex items-center gap-1">Apply <ArrowUpRight className="h-3 w-3" /></span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <MiniStat icon={Rocket} label="Current cohort" value={currentCohort.name.replace("Bharat Incubate '26 · ", "")} />
+          <MiniStat icon={Calendar} label="Applications close" value={currentCohort.applicationsOpenUntil} />
+          <MiniStat icon={Trophy} label="Alumni graduates" value={String(pastCohorts.reduce((s, c) => s + c.graduated, 0))} />
+          <MiniStat icon={Beaker} label="Labs accessible" value="All 6" />
+        </div>
+      </Section>
 
       <Section
         label="Cohort"
@@ -113,5 +164,17 @@ export default function StartupsPage() {
         </div>
       </Section>
     </>
+  );
+}
+
+function MiniStat({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-line bg-ink-900/40 p-4">
+      <div className="mono flex items-center gap-1.5 text-[9.5px]">
+        <Icon className="h-3 w-3 text-accent" />
+        {label}
+      </div>
+      <div className="mt-2 font-display text-[15px] text-white line-clamp-1">{value}</div>
+    </div>
   );
 }

@@ -10,7 +10,6 @@ import {
   Users,
   MessageSquare,
   Calendar,
-  Settings,
   Bell,
   Search,
   ChevronDown,
@@ -23,14 +22,13 @@ import { cn } from "@/lib/cn";
 
 const nav = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/dashboard/workspace", label: "My workspace", icon: Compass },
-  { href: "/dashboard/projects", label: "Projects", icon: GitBranch },
+  { href: "/dashboard/workspace", label: "My workspace", icon: Compass, badge: "12" },
+  { href: "/projects", label: "Projects", icon: GitBranch },
   { href: "/labs", label: "AI Labs", icon: Beaker },
   { href: "/assistant", label: "AI assistant", icon: Sparkles, highlight: true },
   { href: "/community/private", label: "Private rooms", icon: MessageSquare },
-  { href: "/dashboard/network", label: "Network", icon: Users },
-  { href: "/dashboard/calendar", label: "Calendar", icon: Calendar },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  { href: "/community", label: "Network", icon: Users },
+  { href: "/summit", label: "Calendar", icon: Calendar },
 ];
 
 export function MemberShell({ children }: { children: React.ReactNode }) {
@@ -72,6 +70,9 @@ export function MemberShell({ children }: { children: React.ReactNode }) {
                 {item.label}
                 {item.highlight && !active && (
                   <span className="ml-auto rounded-full bg-accent/15 px-1.5 py-0.5 text-[9px] uppercase text-accent">New</span>
+                )}
+                {"badge" in item && item.badge && !active && (
+                  <span className="ml-auto rounded-full border border-line bg-ink-850 px-1.5 py-0.5 text-[9.5px] text-white/60">{item.badge}</span>
                 )}
               </Link>
             );
